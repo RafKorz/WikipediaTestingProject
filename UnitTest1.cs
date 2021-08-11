@@ -13,7 +13,7 @@ namespace WikipediaTestingProject
         {
             driver = new ChromeDriver(@"C:\Users\User\source\repos\WikipediaTestingProject\WikipediaTestingProject\Resources\");
             driver.Manage().Window.Position = new System.Drawing.Point(8, 30);
-            driver.Manage().Window.Size = new System.Drawing.Size(1290, 730);
+            driver.Manage().Window.Size = new System.Drawing.Size(700, 700);
 
             driver.Manage().Timeouts().ImplicitWait = System.TimeSpan.FromSeconds(10);
             driver.Manage().Timeouts().PageLoad = System.TimeSpan.FromSeconds(30);
@@ -28,11 +28,13 @@ namespace WikipediaTestingProject
             searchField.SendKeys(searchEntry);
             searchField.Submit();
 
-            string title = "Czêstochowa – Wikipedia, wolna encyklopedia";
-            driver.FindElement(By.XPath("/html/body/div[3]/form/fieldset/button/i")).Click();
+            //string title = "Czêstochowa – Wikipedia, wolna encyklopedia";
+            driver.FindElement(By.CssSelector("#mw-content-text > div.mw-parser-output > p:nth-child(3) > a:nth-child(5)")).Click();
 
-            string entryURL = "https://pl.wikipedia.org/wiki/Cz%C4%99stochowa";
-            Assert.AreEqual(entryURL, driver.Url, "URL id not correct");
+            string entryURL = "https://pl.wikipedia.org/wiki/Powiat_cz%C4%99stochowski";
+            Assert.AreEqual(entryURL, driver.Url, "URL id not correct.");
+
+            //Assert.AreEqual(driver.Title, "Czêstochowa – Wikipedia, wolna encyklopedia");
         }
 
         [TearDown]
